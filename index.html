@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1220"><meta name="description" content="GoalBook fictional-money sportsbook demo.">
+  <title>GoalBook — Sports Demo</title><link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="demo-banner"><span class="pulse"></span> DEMO MODE · FICTIONAL ODDS & VIRTUAL CREDITS ONLY · NO REAL BETTING</div>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="GoalBook home"><span class="brand-mark">G</span><span>goal<span class="brand-light">book</span><small>SPORTS SIMULATOR</small></span></a>
+    <nav class="main-nav"><button class="nav-link active" data-view="sports">Sports</button><button class="nav-link" data-view="mybets">My tickets <span id="ticket-count" class="count">0</span></button></nav>
+    <div class="top-actions"><div class="balance-chip"><span class="coin">✦</span><div><small>VIRTUAL BALANCE</small><strong id="balance">1,000.00 cr</strong></div></div><button class="admin-button" id="admin-open">Admin <span>↗</span></button><button class="mobile-menu" id="mobile-menu" aria-label="Toggle menu">☰</button></div>
+  </header>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-label">SPORTS</div>
+      <button class="sport-item selected" data-sport="All"><span class="sport-icon">◈</span>All sports <span class="side-count">6</span></button>
+      <button class="sport-item" data-sport="Football"><span class="sport-icon">⚽</span>Football</button>
+      <button class="sport-item" data-sport="Basketball"><span class="sport-icon">🏀</span>Basketball</button>
+      <button class="sport-item" data-sport="Tennis"><span class="sport-icon">🎾</span>Tennis</button>
+      <div class="sidebar-note"><div class="note-icon">ⓘ</div><div><strong>Demo environment</strong><p>All teams, fixtures and odds are fictional examples. Virtual credits have no cash value.</p></div></div>
+      <div class="sidebar-bottom"><span class="online-dot"></span> Demo server online <span class="version">v0.1</span></div>
+    </aside>
+    <main class="main-content">
+      <section class="hero" id="home"><div class="hero-copy"><div class="eyebrow"><span></span> YOUR SPORTS. YOUR WAY.</div><h1>Every match.<br><em>More excitement.</em></h1><p>Explore the action in our interactive sportsbook simulator. Build a slip, test your predictions, and learn how odds work — without risking real money.</p><div class="hero-stats"><div><strong>03</strong><span>SPORT CATEGORIES</span></div><div><strong>06</strong><span>DEMO EVENTS</span></div><div><strong>0</strong><span>REAL-MONEY RISK</span></div></div></div><div class="hero-art" aria-hidden="true"><div class="orb orb-one"></div><div class="orb orb-two"></div><div class="hero-ball">⚽</div><div class="hero-ring"></div><div class="floating-tag tag-one">LIVE THE GAME <span>↗</span></div><div class="floating-tag tag-two"><span class="mini-dot"></span> VIRTUAL PLAY ONLY</div><div class="hero-glow"></div></div></section>
+      <div class="content-heading"><div><div class="section-kicker">THE LINEUP</div><h2 id="section-title">Popular events <span class="live-label"><i></i> DEMO ODDS</span></h2></div><label class="search-box"><span>⌕</span><input id="search" placeholder="Search teams or leagues…" aria-label="Search events"></label></div>
+      <div class="filter-row"><div class="filter-pills"><button class="filter-pill active" data-filter="All">All events</button><button class="filter-pill" data-filter="upcoming">Upcoming</button><button class="filter-pill" data-filter="settled">Settled</button></div><span class="odds-note">Decimal odds <span>ⓘ</span></span></div>
+      <div id="events" class="events-list"><div class="loading">Loading demo events…</div></div>
+      <section class="how-panel"><div class="how-symbol">✳</div><div><strong>How the simulator works</strong><p>Select one outcome per event, enter a virtual stake, and place your demo ticket. Potential returns are estimates, and settled results are controlled by the demo administrator.</p></div><span class="no-cash">NO CASH VALUE</span></section>
+      <footer>GOALBOOK DEMO <span>•</span> Fictional data for product testing only <span class="footer-right">Not affiliated with 1xBet or any real sportsbook.</span></footer>
+    </main>
+    <aside class="slip-panel" id="slip-panel"><div class="slip-head"><div><span class="section-kicker">YOUR PICKS</span><h2>Bet slip <span id="slip-count">0</span></h2></div><button class="clear-slip" id="clear-slip">Clear all</button></div><div class="slip-tabs"><button class="active">Multiple <span>↗</span></button><span>DEMO</span></div><div id="slip-items" class="slip-items"><div class="empty-slip"><div class="empty-icon">＋</div><strong>Your slip is empty</strong><p>Choose odds from any event to add a selection here.</p></div></div><div class="slip-calculation"><div class="calc-row"><span>Combined odds</span><strong id="combined-odds">—</strong></div><label class="stake-label" for="stake">Virtual stake <span>1–500 credits</span></label><div class="stake-input-wrap"><input id="stake" type="number" min="1" max="500" step="1" value="10"><span>CR</span></div><div class="quick-stakes"><button data-stake="10">10</button><button data-stake="25">25</button><button data-stake="50">50</button><button data-stake="100">100</button></div><div class="return-box"><span>Potential return</span><strong id="potential-return">0.00 <small>cr</small></strong><small>Includes stake · not guaranteed</small></div><button id="place-bet" class="place-button" disabled>Place demo ticket <span>→</span></button><p class="slip-disclaimer">Virtual credits only. No deposits or withdrawals.</p></div></aside>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <div class="modal-backdrop" id="admin-modal" hidden><div class="modal"><button class="modal-close" data-close="admin-modal" aria-label="Close">×</button><div class="modal-icon">⌘</div><div class="section-kicker">OWNER ACCESS</div><h2>Admin control room</h2><p class="modal-copy">Sign in to manage demo event results. Admin actions are checked by the server.</p><form id="admin-login-form"><label for="admin-password">Admin password</label><input id="admin-password" type="password" autocomplete="current-password" placeholder="Enter configured admin password" required><button class="primary-button" type="submit">Sign in securely <span>→</span></button><div id="admin-login-error" class="form-error"></div></form><div class="modal-footnote">Configure <code>ADMIN_PASSWORD</code> in your hosting environment before using admin tools.</div></div></div>
+  <div class="modal-backdrop" id="admin-dashboard" hidden><div class="modal modal-wide"><button class="modal-close" data-close="admin-dashboard" aria-label="Close">×</button><div class="section-kicker">OWNER CONSOLE</div><div class="admin-title-row"><div><h2>Demo control room</h2><p class="modal-copy">Set fictional match outcomes and settle test tickets.</p></div><button class="logout-button" id="admin-logout">Sign out</button></div><div id="admin-stats" class="admin-stats"></div><div id="admin-matches" class="admin-matches"></div><div class="modal-footnote">These controls affect demo data only. They cannot process payments or cash bets.</div></div></div>
+  <div class="modal-backdrop" id="ticket-modal" hidden><div class="modal"><button class="modal-close" data-close="ticket-modal" aria-label="Close">×</button><div class="success-mark">✓</div><div class="section-kicker">TICKET CONFIRMED</div><h2>You're in the game.</h2><p class="modal-copy">Your demo ticket has been placed using virtual credits.</p><div id="ticket-confirmation" class="ticket-confirmation"></div><button class="primary-button" data-close="ticket-modal">Back to events <span>→</span></button></div></div>
+  <script src="/app.js" defer></script>
+</body></html>
